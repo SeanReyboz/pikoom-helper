@@ -1,0 +1,24 @@
+{
+  "name": "pikoom-helper",
+  "version": "1.0.0",
+  "description": "Un bot discord pour faciliter la gestion du planning de l'agence pikoom",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeanReyboz/pikoom-helper.git"
+  },
+  "author": "Sean Reyboz, Valentin Gassend, Emmanuel Faure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SeanReyboz/pikoom-helper/issues"
+  },
+  "homepage": "https://github.com/SeanReyboz/pikoom-helper#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.6.0",
+    "discord.js": "^13.1.0",
+    "node-cron": "^3.0.0"
+  }
+}

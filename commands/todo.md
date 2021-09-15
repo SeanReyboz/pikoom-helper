@@ -1,0 +1,3 @@
+- commande "ajouter", permettant d'ajouter une deadline/rappel
+- commande "modifier", permettant d'éditer une deadline existante
+- commande "supprimer", permettant de détruire une deadline existante
