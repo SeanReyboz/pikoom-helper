@@ -2,17 +2,12 @@ const Discord = require('discord.js');
 const { Intents } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const Cron = require('node-cron');
-const { TOKEN } = require('./config.json');
-
-// --- variables et constantes ---
-const botChannelId = '779878152071282688';
+const { TOKEN, botChannelId } = require('./config.json');
 
 // --- Création du client (bot) ---
 
 // Intents possibles: GUILDS, GUILD_MESSAGES, GUILD_MESSAGE_REACTIONS
 const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS] });
-const botChannelId = ''; // identifiant du channel du bot.
-
 
 // Afficher un message dans la console lorsque le bot est prêt.
 client.once('ready', () => {
