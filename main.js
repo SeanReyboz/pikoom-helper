@@ -4,6 +4,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const Cron = require('node-cron');
 const { TOKEN } = require('./config.json');
 
+// --- variables et constantes ---
+const botChannelId = '779878152071282688';
+
 // --- Création du client (bot) ---
 
 // Intents possibles: GUILDS, GUILD_MESSAGES, GUILD_MESSAGE_REACTIONS
@@ -16,12 +19,17 @@ client.once('ready', () => {
 	console.log(`Bot connecté en tant que ${client.user.tag}`);
 });
 
+
+// Afficher un rappel bi-hebdomadaire pour les réunions du lundi et mercredi
 client.on('ready', () => {
-	channel = client.channels.cache.get('779878152071282688'); //id channel
-		cron.schedule('1 * 19 * * 2,7', () => {
-				channel.send(":calendar: __RAPPEL__\nRéunion prévue demain, à la première pause.\n\nN'oubliez pas :heart:");
+	Cron.schedule('1 * 19 * * 2,7', () => {
+		client.channels.fetch(botChannelId).then(channel => {
+			channel.send(":calendar: __RAPPEL__\nRéunion prévue demain, à la première pause.\n\nN'oubliez pas :heart:");
+		});
 	});
 });
+
+
 // Connecter le bot à Discord.
 client.login(TOKEN).then(() => {
 	console.log("--> Client connecté...");
