@@ -97,9 +97,29 @@ client.on('interactionCreate', async interaction => {
 
 		// TODO
 	}
+	else if (commandName === 'suggestion') {
+		// N.B: définir des valeurs par défaut au cas où
+		const idea = options.getString('idea');
+		const regex = /\d{2}/;		// Vérifier que la date saisie soit validea.
+		if (!regex.test(idea)) {
+			interaction.reply('vous devez saisir une idée');
+			return;
+		}
+		// TODO: vérifier que la date saisie soit cohérente.
+	
+
+		interaction.reply(`:ballot_box: Suggestion ! :ballot_box:
+@everyone
+		
+
+>	${idea} 
+		
+		
+:white_check_mark: Je valide !
+:x: Je suis contre !`);
+	}
+	
 });
-
-
 
 // Connecter le bot à Discord.
 client.login(TOKEN).then(() => {
