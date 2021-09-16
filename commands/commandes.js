@@ -59,6 +59,18 @@ module.exports = [
 		],
 	},
 	{
+		name: 'suggestion',
+		description: 'Créer une nouvelle suggestion.',
+		options: [
+			{
+				name: 'idea',
+				description: "Le contenu de la suggestion à ajouter.",
+				required: true,
+				type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+			},
+		],
+	},
+	{
 		name: 'afficher',
 		description: 'Afficher le temps restant avant la deadline la plus proche.',
 		options: [
