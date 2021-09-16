@@ -113,27 +113,57 @@ client.on('interactionCreate', async interaction => {
 
 		// TODO
 	} else if (commandName === 'afficher') {
-		const id = options.getInteger('deadline-id') || 0;
+		const id = options.getInteger('nombre') || 0;
 
 		// TODO
 	} else if (commandName === 'suggestion') {
 		const idea = options.getString('idea') || "Nouvelle suggestion";
-		interaction.reply(`:ballot_box: **Suggestion de ${interaction.user} ! **`);
+
+		interaction.reply(`:ballot_box: **Suggestion de ${interaction.user} !**\n@everyone`);
 		const message = await interaction.channel.send({ 
-		content:`\n @everyone \n\n> ${idea}\n\n:white_check_mark: Je valide !\n:x: Je suis contre !`,fetchReply: true });
+			content: `:ballot_box: **Suggestion de ${interaction.user} !**\n everyone \n\n> ${idea}\n\n:white_check_mark: Je valide !\n:x: Je suis contre !`,
+			fetchReply: true,
+		});
 		message.react('✅');
 		message.react('❌');
 	} else if (commandName === 'annonce') {
 		const message = options.getString('message') || "Nouvelle annonce.";
-		interaction.reply(`:warning: **Annonce !!! ** :warning:`);
-		await interaction.channel.send(`\n||@everyone||\n\n> ${message}`);
+
+		interaction.reply(`:warning: **Annonce !!!**`);
+		await interaction.channel.send(`\n@everyone\n\n> ${message}`);
 	} else if (commandName === 'reunion') {
 		const reunion = options.getString('reunion') || "Nouvelle réunion.";
-		interaction.reply(`:date: **Réunion !!!** :date:`);
+		const role = options.getRole('role');
+		const mention = (role) ? role : '@everyone';
+
+		interaction.reply(`:date: **Réunion !!!**`);
 		const message = await interaction.channel.send({ 
-		content:`\n||@everyone||\n\n> ${reunion} \n\n:white_check_mark:  Pour vue !`,fetchReply: true });
+			content:`\n${mention}\n\n> ${reunion} \n\n:white_check_mark:  Pour lu !`, 
+			fetchReply: true
+		});
 		message.react('✅');
-	}
+	} else if (commandName === 'aide') {
+		interaction.reply(`Liste des commandes disponibles...
+
+- SYNOPSIS:
+Une commande est de la forme "**/commande**". Elle accepte et/ou requiert parfois des options ou arguments.
+Les arguments requis sont notés "**<argument>**", tandis que les options sont notées "**[option]**".
+
+- DEADLINES:
+**/ajouter <date> <titre> <description>** - Ajouter une nouvelle deadline.
+**/afficher [nombre]** - Afficher des informations sur le nombre spécifié de deadlines. Défaut: la deadline plus proche.
+**/modifier <deadline-id>** - Modifier la deadline spécifiée.
+**/supprimer <deadline-id>** - Supprimer la deadline spécifiée.
+
+- COMMUNICATION:
+**/annonce <message>** - Créer une nouvelle annonce.
+**/sugestion <idea>** - Créer une nouvelle sugestion.
+**/reunion <reunion> [role]** - Annoncer une nouvelle réunion. Possibilité de notifier un rôle en particulier. Défaut: @everyone.
+
+- GÉNÉRAL:
+**/aide** - Afficher ce message d'aide.
+		`);
+	} 
 });
 
 // Connecter le bot à Discord.
