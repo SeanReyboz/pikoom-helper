@@ -32,6 +32,11 @@ client.on('ready', () => {
 			channel.send(":calendar: __RAPPEL__\nRéunion prévue demain, à la première pause.\n\nN'oubliez pas :heart:");
 		});
 	});
+	Cron.schedule('1 30 9 * * 1', () => {
+		client.channels.fetch(botChannelId).then(channel => {
+			channel.send("/afficher -1");
+		});
+	});
 
 	// Ajout des commandes au bot ----
 	const guild = client.guilds.cache.get(guildId);
