@@ -81,7 +81,27 @@ client.on('interactionCreate', async interaction => {
 			interaction.reply(`La date doit être de la forme JJ-MM-AAAA. Vous avez saisi: ${date}.`);
 			return;
 		}
-		// TODO: vérifier que la date saisie soit cohérente.
+
+		// Vérification de la cohérence de la date saisie.
+		const elements = date.split('-');
+
+		// Gérer les erreurs
+		const invalidValueException = (type, min, max, element) => {
+			interaction.reply(`:warning: **ERREUR**:\n\n> ${type} n'est pas valide.\n\nUne valeur comprise entre ${min} et ${max} attendue, "${element}" reçu.`)
+		}
+
+		if (elements[0] < 1 || elements[0] > 31) {
+			invalidValueException("Le jour", 1, 31, elements[0]);
+			return;
+		}
+		if (elements[1] < 1 || elements[1] > 12) {
+			invalidValueException("Le mois", 1, 12, elements[1]);
+			return;
+		}
+		if (elements[2] < 2021 || elements[2] > 2022) {
+			invalidValueException("L'année", 2021, 2022, elements[2]);
+			return;
+		}
 
 		interaction.reply(`arguments: ${date} ${titre} ${desc}.`);
 
@@ -96,27 +116,9 @@ client.on('interactionCreate', async interaction => {
 		const id = options.getInteger('deadline-id') || 0;
 
 		// TODO
-	}
-	else if (commandName === 'suggestion') {
-		// N.B: définir des valeurs par défaut au cas où
-		const idea = options.getString('idea');
-		const regex = /\d{2}/;		// Vérifier que la date saisie soit validea.
-		if (!regex.test(idea)) {
-			interaction.reply('vous devez saisir une idée');
-			return;
-		}
-		// TODO: vérifier que la date saisie soit cohérente.
-	
-
-		interaction.reply(`:ballot_box: Suggestion ! :ballot_box:
-@everyone
-		
-
->	${idea} 
-		
-		
-:white_check_mark: Je valide !
-:x: Je suis contre !`);
+	} else if (commandName === 'suggestion') {
+		const idea = options.getString('idea') || "Nouvelle suggestion";
+		interaction.reply(`:ballot_box: **Suggestion !**\n@everyone\n\n> ${idea}\n\n:white_check_mark: Je valide !\n:x: Je suis contre !`);
 	}
 	
 });
