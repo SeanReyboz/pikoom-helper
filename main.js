@@ -123,8 +123,11 @@ client.on('interactionCreate', async interaction => {
 		content:`\n @everyone \n\n> ${idea}\n\n:white_check_mark: Je valide !\n:x: Je suis contre !`,fetchReply: true });
 		message.react('✅');
 		message.react('❌');
+	} else if (commandName === 'annonce') {
+		const message = options.getString('message') || "Nouvelle annonce.";
+		interaction.reply(`:warning: **Annonce !!! ** :warning:`);
+		await interaction.channel.send(`\n||@everyone||\n\n> ${message}`);
 	}
-	
 });
 
 // Connecter le bot à Discord.
