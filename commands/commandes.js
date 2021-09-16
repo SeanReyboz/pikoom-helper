@@ -76,7 +76,7 @@ module.exports = [
 		options: [
 			{
 				name: 'message',
-				description: "Le contenu de ton annonce à ajouter.",
+				description: "Le contenu de l'annonce à ajouter.",
 				required: true,
 				type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
 			},
@@ -84,14 +84,19 @@ module.exports = [
 	},
 	{
 		name: 'reunion',
-		description: 'Annoncer une nouvelles réunion.',
+		description: 'Annoncer une nouvelle réunion.',
 		options: [
 			{
 				name: 'reunion',
-				description: "Le contenu de ta reunion à ajouter.",
+				description: "Le contenu de la réunion à ajouter.",
 				required: true,
 				type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
 			},
+			{
+				name: 'role',
+				description: "Notifier les personnes du rôle spécifié.",
+				type: Discord.Constants.ApplicationCommandOptionTypes.ROLE,
+			}
 		],
 	},
 	{
@@ -99,10 +104,14 @@ module.exports = [
 		description: 'Afficher le temps restant avant la deadline la plus proche.',
 		options: [
 			{
-				name: 'deadline-id',
-				description: "L'identifiant de la deadline à afficher. -1 = toutes les deadlines.",
+				name: 'nombre',
+				description: "Le nombre de deadline(s) à afficher. -1 = toutes les deadlines.",
 				type: Discord.Constants.ApplicationCommandOptionTypes.INTEGER,
 			},
 		],
 	},
+	{
+		name: 'aide',
+		description: "Afficher un message d'aide d'utilisation des commandes",
+	}
 ];
