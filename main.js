@@ -127,6 +127,12 @@ client.on('interactionCreate', async interaction => {
 		const message = options.getString('message') || "Nouvelle annonce.";
 		interaction.reply(`:warning: **Annonce !!! ** :warning:`);
 		await interaction.channel.send(`\n||@everyone||\n\n> ${message}`);
+	} else if (commandName === 'reunion') {
+		const reunion = options.getString('reunion') || "Nouvelle réunion.";
+		interaction.reply(`:date: **Réunion !!!** :date:`);
+		const message = await interaction.channel.send({ 
+		content:`\n||@everyone||\n\n> ${reunion} \n\n:white_check_mark:  Pour vue !`,fetchReply: true });
+		message.react('✅');
 	}
 });
 
