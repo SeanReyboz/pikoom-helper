@@ -71,6 +71,30 @@ module.exports = [
 		],
 	},
 	{
+		name: 'annonce',
+		description: 'Créer une nouvelle annonce.',
+		options: [
+			{
+				name: 'message',
+				description: "Le contenu de ton annonce à ajouter.",
+				required: true,
+				type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+			},
+		],
+	},
+	{
+		name: 'reunion',
+		description: 'Annoncer une nouvelles réunion.',
+		options: [
+			{
+				name: 'reunion',
+				description: "Le contenu de ta reunion à ajouter.",
+				required: true,
+				type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+			},
+		],
+	},
+	{
 		name: 'afficher',
 		description: 'Afficher le temps restant avant la deadline la plus proche.',
 		options: [
