@@ -54,10 +54,10 @@ client.on('ready', () => {
 	client.user.setPresence({
 		activities: [
 			{
-				name: "Salut! Je m'appelle Bob HAHA !"
+				name: '"/aide" pour lister les commandes.'
 			}
 		],
-		status: "idle",
+		status: "online",
 	});
 });
 
@@ -119,9 +119,11 @@ client.on('interactionCreate', async interaction => {
 	} else if (commandName === 'suggestion') {
 		const idea = options.getString('idea') || "Nouvelle suggestion";
 
-		interaction.reply(`:ballot_box: **Suggestion de ${interaction.user} !**\n@everyone`);
+		interaction.reply(`:ballot_box: **Suggestion de ${interaction.user} !**\n`);
+    // Puisqu'il est impossible de notifier des rôles dans une réponse d'interaction,
+    // on envoie un autre message à la suite pour notifier @everyone
 		const message = await interaction.channel.send({ 
-			content: `:ballot_box: **Suggestion de ${interaction.user} !**\n everyone \n\n> ${idea}\n\n:white_check_mark: Je valide !\n:x: Je suis contre !`,
+			content: `@everyone \n\n> ${idea}\n\n:white_check_mark: Je valide !\n:x: Je suis contre !`,
 			fetchReply: true,
 		});
 		message.react('✅');
