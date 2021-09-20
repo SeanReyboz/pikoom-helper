@@ -102,16 +102,13 @@ module.exports = [
 	{
 		name: 'afficher',
 		description: 'Afficher le temps restant avant la deadline la plus proche.',
-		options: [
-			{
-				name: 'nombre',
-				description: "Le nombre de deadline(s) à afficher. -1 = toutes les deadlines.",
-				type: Discord.Constants.ApplicationCommandOptionTypes.INTEGER,
-			},
-		],
 	},
 	{
 		name: 'aide',
 		description: "Afficher un message d'aide d'utilisation des commandes",
-	}
+	},
+	{
+		name: 'test',
+		description: "Une simple commande de test...",
+	},
 ];
